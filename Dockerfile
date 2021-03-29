@@ -4,9 +4,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV GHIDRA_REPOS_PATH /srv/repositories
 ENV GHIDRA_INSTALL_PATH /opt
-ENV GHIDRA_RELEASE_URL https://ghidra-sre.org/ghidra_9.1.2_PUBLIC_20200212.zip
-ENV GHIDRA_VERSION 9.1.2_PUBLIC
-ENV GHIDRA_SHA_256 ebe3fa4e1afd7d97650990b27777bb78bd0427e8e70c1d0ee042aeb52decac61
+ENV GHIDRA_RELEASE_URL https://ghidra-sre.org/ghidra_9.2.2_PUBLIC_20201229.zip
+ENV GHIDRA_VERSION 9.2.2_PUBLIC
+ENV GHIDRA_SHA_256 8cf8806dd5b8b7c7826f04fad8b86fc7e07ea380eae497f3035f8c974de72cf8
 
 RUN apk add --update --no-cache \
     wget \
@@ -35,4 +35,6 @@ EXPOSE 13100
 EXPOSE 13101
 EXPOSE 13102
 
-ENTRYPOINT ${GHIDRA_INSTALL_PATH}/ghidra/server/ghidraSvr console
+COPY setup /setup
+
+ENTRYPOINT /setup/entrypoint.sh
